@@ -1,0 +1,12 @@
+/* src/layout/layout.css */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px; /* Prevent content from being hidden behind fixed navbar */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}

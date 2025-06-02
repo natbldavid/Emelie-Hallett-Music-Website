@@ -1,0 +1,149 @@
+/* src/components/navbar/navbar.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: RGBA(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar-scrolled {
+  padding: 8px 20px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+.navbar-scrolled .navbar-logo {
+  height: 40px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-item {
+  position: relative;
+}
+
+.navbar-link {
+  text-decoration: none;
+  padding: 8px 15px;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.navbar-link:hover {
+  background-color: rgba(255, 105, 180, 0.15);
+  color: #FF69B4;
+}
+
+.navbar-link-active {
+  background-color: rgba(255, 105, 180, 0.25);
+  color: #FF69B4;
+  border-radius: 8px;
+}
+
+.navbar-contact {
+  text-align: right;
+  color: #777;
+  font-size: 0.8rem;
+}
+
+.navbar-menu-button {
+  display: none;
+  background: none;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-menu-button {
+    display: block;
+  }
+
+  .navbar-contact {
+    display: none;
+  }
+
+  .navbar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: 1000;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow-y: auto;
+  }
+
+  .overlay-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .overlay-item {
+    margin-bottom: 40px;
+  }
+
+  .overlay-link {
+    display: block;
+    font-size: 2rem;
+    color: #333;
+    padding: 20px 0;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    text-align: center;
+  }
+
+  .overlay-link:hover {
+    background-color: rgba(255, 103, 0, 0.15);
+    color: #FF6700;
+  }
+
+  .overlay-close-button {
+    background-color: #FF6700;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+  }
+
+  .overlay-close-button:hover {
+    background-color: #cc5200;
+  }
+}
