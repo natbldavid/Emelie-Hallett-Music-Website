@@ -12,7 +12,7 @@ import './layout.css';
 
 const Layout = () => {
   return (
-    <Router basename="/Emelie-Hallett-Music-Website">
+    <Router>
       <ScrollToTop />
       <div className="app-container">
         <Navbar />
