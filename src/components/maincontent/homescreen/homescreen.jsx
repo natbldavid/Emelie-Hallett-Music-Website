@@ -1,5 +1,5 @@
 import React from 'react';
-import './HomeScreen.css';
+import './homescreen.css';
 import emeliehomescreenphoto from '../../../assets/emeliehomescreenphoto.jpg';
 import kingshandymanworkphoto from '../../../assets/kingshandyman.jpg';
 import kingspaintingdecoratingphoto from '../../../assets/kingspaintingdecorating.jpg';
@@ -48,7 +48,7 @@ const HomeScreen = () => {
         Mainly operating around Hampshire, Surrey and Sussex, I regularly do weddings, corporate events and pub evenings.
       </p>
       <p className="text-lg">
-        I can make sure your special day even more special, or make your 
+        I can make sure your special day even more special, or make your poopoo.
       </p>
     </div>
   </div>
