@@ -4,18 +4,19 @@ import logo from '../../assets/OfficialEmelieHallettLogo.png';
 import smallLogo from '../../assets/realsmalllogo.png';
 import { Menu, X } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
+import { FaInstagram, FaTiktok } from 'react-icons/fa6';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Close the menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // Close menu on window resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -26,10 +27,9 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Detect scroll for shrinking navbar
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50); // adjust threshold as needed
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -37,77 +37,125 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: 'About', path: '/about' },
+    { name: 'Song List', path: '/songslist' },
+    { name: 'Testimonials', path: '/testimonials' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
-      <NavLink to="/" end>
-        <img
-          src={scrolled ? smallLogo : logo}
-          alt="Logo"
-          className="navbar-logo"
-        />
-      </NavLink>
+    <>
+      <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
+        <NavLink to="/" end>
+          <img
+            src={scrolled ? smallLogo : logo}
+            alt="Logo"
+            className="navbar-logo"
+          />
+        </NavLink>
 
-      <ul className={`navbar-links ${menuOpen ? 'navbar-links-open' : ''}`}>
-        {navItems.map((item) => (
-          <li key={item.path} className="navbar-item">
-            <NavLink
-              to={item.path}
-              className={({ isActive }) =>
-                isActive ? 'navbar-link navbar-link-active' : 'navbar-link'
-              }
-              end={item.path === '/'}
-            >
-              {item.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        <ul className={`navbar-links`}>
+          {navItems.map((item) => (
+            <li key={item.path} className="navbar-item">
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive ? 'navbar-link navbar-link-active' : 'navbar-link'
+                }
+                end={item.path === '/'}
+              >
+                {item.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-      <div className="navbar-contact">
-        <p className="contact-text">Call: 0121doone</p>
-        <p className="contact-text">Email: maintenanceman@gmail.com</p>
-      </div>
+        <div className="navbar-contact">
+          <p className="contact-text flex items-center gap-2">
+            <FaPhoneAlt className="text-pink-500" /> 07799634410
+          </p>
+          <p className="contact-text flex items-center gap-2">
+            <MdMail className="text-pink-500" /> emelie.hallett@yahoo.com
+          </p>
+                                       <div className="flex gap-4">
+                                  <a
+                                    href="https://www.instagram.com/emeliehallett/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Instagram"
+                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+                                  >
+                                    <FaInstagram size={24} />
+                                  </a>
+                                  <a
+                                    href="https://www.tiktok.com/@emeliehallettmusic"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="TikTok"
+                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+                                  >
+                                    <FaTiktok size={24} />
+                                  </a>
+                                </div>
+        </div>
 
-      <button
-        className="navbar-menu-button"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        {menuOpen ? <X size={32} /> : <Menu size={32} />}
-      </button>
+        <button
+          className="navbar-menu-button"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={32} /> : <Menu size={32} />}
+        </button>
+      </nav>
 
       {menuOpen && (
         <div className="navbar-overlay">
-          <ul className="overlay-links">
-            {navItems.map((item) => (
-              <li key={item.path} className="overlay-item">
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'overlay-link navbar-link-active'
-                      : 'overlay-link'
-                  }
-                  end={item.path === '/'}
-                >
-                  {item.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <button
-            className="overlay-close-button"
-            onClick={() => setMenuOpen(false)}
-          >
-            Close ✕
-          </button>
+          <div className="overlay-content">
+            <ul className="overlay-links">
+              {navItems.map((item) => (
+                <li key={item.path} className="overlay-item">
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                     isActive ? 'overlay-link overlay-link-active' : 'overlay-link'
+                    }
+                    end={item.path === '/'}
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <button
+              className="overlay-close-button"
+              onClick={() => setMenuOpen(false)}
+            >
+              Close ✕
+            </button>
+                                         <div className="flex gap-4">
+                                  <a
+                                    href="https://www.instagram.com/emeliehallett/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Instagram"
+                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+                                  >
+                                    <FaInstagram size={24} />
+                                  </a>
+                                  <a
+                                    href="https://www.tiktok.com/@emeliehallettmusic"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="TikTok"
+                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+                                  >
+                                    <FaTiktok size={24} />
+                                  </a>
+                                </div>
+          </div>
         </div>
       )}
-    </nav>
+    </>
   );
 };
 

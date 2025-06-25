@@ -1,62 +1,94 @@
 import React from 'react';
 import './aboutusscreen.css';
-import kingsaboutusphoto from '../../../assets/kingsaboutus.jpg';
-import kingsaboutusmiddle from '../../../assets/kingsaboutusmiddle.jpg';
+import emeliehomescreenphoto from '../../../assets/emeliehomescreenphotoofficial.webp';
+import kingsaboutusmiddle from '../../../assets/emeliesingingwhite.jpg';
 import { useNavigate } from 'react-router-dom';
+import { FaInstagram, FaTiktok } from 'react-icons/fa6';
 
 const AboutUsScreen = () => {
   const navigate = useNavigate();
 
   return (
     <div className="home-screen">
-      {/* Section 1 */}
-      <div className="relative w-full h-[50vh] bg-cover bg-center text-center text-white" style={{ backgroundImage: `url(${kingsaboutusphoto})` }}>
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full">
-          <h1 className="text-5xl font-bold mb-4">About Us</h1>
-          <p className="text-2xl">A team you rely on.</p>
-        </div>
-      </div>
+{/* Section 1 */}
+<div className="relative w-full h-[60vh] text-center text-white overflow-hidden">
+  <img
+    src={emeliehomescreenphoto}
+    alt="Emelie Hallett performing"
+    loading="lazy"
+    className="absolute inset-0 w-full h-full object-cover object-[center_80%] z-0"
+  />
+  <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
 
-      {/* Section 2 */}
-      <div className="bg-white py-20 px-8 md:px-20">
-        <p className="text-lg mb-4">Hi, we're Kings Building & Maintenance - a professional handyman service helping busy homeowners with repairs and maintenance. Operated by Kingsley Hallett and Martin Shooglenickle, our combined 30+ years experience makes us experts in our craft. But along with our experience and expertise, we have a genuine passion for the work we do, with our sole purpose being to make peoples that little bit easier.</p>
-        <p className="text-lg mb-4">We both worked at the same company, doing important maintenance jobs for people. And one day we thought, "why not do it ourselves." So here we are.</p>
-        <p className="text-lg">After identifying a local need in Hampshire for affordable maintenance and handyman work, we have worked with over 100 clients, all of which are extremely happy with our service. We've renovated houses, built garden decking, painted new homes, and much more. </p>
-      </div>
+  <div className="relative z-10 flex flex-col items-center justify-center h-full">
+    <h1 className="text-5xl font-romantic mb-4 flex items-center justify-center gap-2">
+      About Me
+    </h1>
+    <p className="text-2xl font-elegant mb-4">Professional singer for your special days</p>
 
-      {/* Section Separator */}
-      <hr className="border-t-2 border-black shadow-lg" />
-
-{/* Section 3 */}
-<div className="bg-white py-20 px-8 md:px-20 flex flex-col md:flex-row items-center gap-12">
-  <div className="flex-1">
-    <h2 className="text-3xl font-bold mb-8 text-orange-500">Why Use Kings Building and Maintenance?</h2>
-    <ul className="list-disc list-inside space-y-2 text-lg mb-4">
-      <li>Struggling to balance family time with your career whilst simultaneously maintaining a comfortable and beautiful home?</li>
-      <li>Overwhelmed by your home maintenance to-do list?</li>
-      <li>Experiencing physical difficulties that are making it harder to keep up with house work?</li>
-    </ul>
-    <p className="text-lg">If so, you've come to the right place! Whether you need decking fitted outside, or a shed built, or your living room painted, we've got you covered. Hiring a handyman is a cost and time effective way of keeping your home exactly how you want it, removing the frustration.</p>
-    <br />
-    <p className="text-lg">All you have to do is {' '}
-      <button
-  onClick={() => navigate('/contact')}
-  className="text-orange-500 underline hover:text-orange-700 transition-colors"
->
-  Contact Us
-</button> and we'll give you a free quote!
-    </p>
-  </div>
-
-  <div className="flex-1">
-    <img src={kingsaboutusmiddle} alt="About Us" className="rounded-lg shadow-lg w-full" />
+    {/* Social Icons */}
+    <div className="flex gap-6">
+      <a
+        href="https://www.instagram.com/emeliehallett/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        className="hover:text-pink-300 transition-colors"
+      >
+        <FaInstagram size={28} />
+      </a>
+      <a
+        href="https://www.tiktok.com/@emeliehallettmusic"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TikTok"
+        className="hover:text-pink-300 transition-colors"
+      >
+        <FaTiktok size={28} />
+      </a>
+    </div>
   </div>
 </div>
 
+      {/* Combined About Section */}
+      <div className="bg-white py-20 px-8 md:px-20">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          {/* Text Column */}
+          <div className="md:w-1/2 w-full">
+            <h2 className="text-3xl font-bold mb-8 text-pink-300">Hey, I'm Emelie</h2>
+            <p className="text-lg mb-4">
+              I'm a professional singer based in Hampshire (and surrounding areas), and I absolutely love bringing live music to life’s most special moments.
+            </p>
+            <p className="text-lg mb-4">
+              Whether I’m singing you down the aisle, setting the mood during your reception, or making your first dance one to remember, I tailor every performance to fit your vision.
+            </p>
+            <p className="text-lg mb-4">
+              I also perform at pub and restaurants for relaxed acoustic evenings.
+            </p>
+            <p className="text-lg mb-6">
+              Over the years, I’ve performed at weddings, birthdays, corporate events, and cozy local evenings. I bring great music, good energy, and a relaxed, professional vibe to every event.
+            </p>
+            <button
+              onClick={() => navigate('/contact')}
+              className="text-pink-400 underline hover:text-pink-600 transition-colors text-lg"
+            >
+              Contact me for a quote
+            </button>
+          </div>
+
+          {/* Image Column */}
+          <div className="md:w-1/2 w-full h-full">
+            <img
+              src={kingsaboutusmiddle}
+              alt="Emelie Singing"
+              className="w-full h-auto max-h-[500px] object-cover object-[center_20%] rounded-[24px] shadow-lg"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Section Separator */}
       <hr className="border-t-2 border-black shadow-lg" />
-
     </div>
   );
 };

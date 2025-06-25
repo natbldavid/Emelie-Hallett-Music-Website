@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
 const Ratings = () => {
   const reviews = [
     {
-      text: "Kings was great. He did everything I wanted and more.",
-      author: "Mark, Staines",
+      text: "Emelie sang our first dance song at our wedding and made a special moment even more beautiful with her gorgeous singing. We were so pleased and would recommend her to anyone.",
+      author: "Henri & Rebecca, Oxford",
       rating: 5,
     },
     {
-      text: "Excellent service! Will definitely recommend.",
-      author: "Sarah, London",
+      text: "Highly recommend Emelie, a beautiful voice and a joy to have at our event.",
+      author: "Lisa, Guildford",
       rating: 5,
     },
     {
@@ -22,6 +22,7 @@ const Ratings = () => {
 
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [direction, setDirection] = useState('next');
+  const intervalRef = useRef(null);
 
   const handleNextReview = () => {
     setDirection('next');
@@ -35,49 +36,98 @@ const Ratings = () => {
     );
   };
 
+  // Swipe support
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: handleNextReview,
-    onSwipedRight: handlePrevReview,
+    onSwipedLeft: () => {
+      resetAutoSlide();
+      handleNextReview();
+    },
+    onSwipedRight: () => {
+      resetAutoSlide();
+      handlePrevReview();
+    },
     trackMouse: true,
   });
 
-   return (
-   <div className="bg-white py-20 px-8 md:px-20">
-        <h2 className="text-3xl font-bold mb-12 text-center text-orange-500">What Our Customers Think</h2>
-       <div className="review-container" {...swipeHandlers}>
-  <button className="review-button" onClick={handlePrevReview}>
-    &#10094;
-  </button>
+  // Auto slide every 3 seconds
+  const startAutoSlide = () => {
+    intervalRef.current = setInterval(() => {
+      handleNextReview();
+    }, 3000); // Change every 3 seconds
+  };
 
-  {/* Animate only this box */}
-  <div
-    key={currentReviewIndex}
-    className={`review-slide ${direction === 'next' ? 'slide-left' : 'slide-right'}`}
-  >
-    <p className="text-xl sm:text-2xl mb-4 text-center px-4">“{reviews[currentReviewIndex].text}”</p>
-    <div className="text-yellow-500 mb-4 text-center text-lg sm:text-2xl">
-      {'★'.repeat(reviews[currentReviewIndex].rating)}
-    </div>
-    <p className="text-base sm:text-lg text-gray-500 text-center">{reviews[currentReviewIndex].author}</p>
-  </div>
+  const resetAutoSlide = () => {
+    clearInterval(intervalRef.current);
+    startAutoSlide();
+  };
 
-  <button className="review-button" onClick={handleNextReview}>
-    &#10095;
-  </button>
-</div>
+  useEffect(() => {
+    startAutoSlide();
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
-{/* ✅ Move dots here — OUTSIDE the animated slide */}
-<div className="mt-6 flex justify-center gap-2">
-  {reviews.map((_, i) => (
-    <div
-      key={i}
-      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-        i === currentReviewIndex ? 'bg-orange-500' : 'bg-gray-300'
-      }`}
-    />
-  ))}
-</div>
+  return (
+    <div className="bg-white py-20 px-8 md:px-20">
+      <h2 className="text-3xl font-elegant font-bold mb-12 text-center text-[#FF69B4]">
+        My Testimonials
+      </h2>
+
+      <div
+        className="review-container flex items-center justify-center relative"
+        {...swipeHandlers}
+      >
+        {/* Left Arrow — hidden on small screens */}
+        <button
+          className="review-button absolute left-0 text-4xl px-4 hidden sm:block"
+          onClick={() => {
+            resetAutoSlide();
+            handlePrevReview();
+          }}
+        >
+          &#10094;
+        </button>
+
+        <div
+          key={currentReviewIndex}
+          className={`review-slide transition-all duration-500 ease-in-out max-w-3xl text-center px-4 ${
+            direction === 'next' ? 'slide-left' : 'slide-right'
+          }`}
+        >
+<p className="sm:text-xl mb-4 px-4 line-clamp-5 h-[8rem] flex items-center justify-center text-center">
+  “{reviews[currentReviewIndex].text}”
+</p>
+          <div className="text-yellow-500 mb-4 text-lg sm:text-2xl">
+            {'★'.repeat(reviews[currentReviewIndex].rating)}
+          </div>
+          <p className="text-base sm:text-lg text-gray-500">
+            {reviews[currentReviewIndex].author}
+          </p>
+        </div>
+
+        {/* Right Arrow — hidden on small screens */}
+        <button
+          className="review-button absolute right-0 text-4xl px-4 hidden sm:block"
+          onClick={() => {
+            resetAutoSlide();
+            handleNextReview();
+          }}
+        >
+          &#10095;
+        </button>
       </div>
+
+      {/* Dots */}
+      <div className="mt-6 flex justify-center gap-2">
+        {reviews.map((_, i) => (
+          <div
+            key={i}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              i === currentReviewIndex ? 'bg-[#FF69B4]' : 'bg-gray-300'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

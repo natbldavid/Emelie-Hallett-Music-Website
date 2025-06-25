@@ -1,8 +1,10 @@
 import React from 'react';
-import logo from '../../assets/OfficalLogo2Real.png';
+import logo from '../../assets/OfficialEmelieHallettLogo.png';
 import manateeicon from '../../assets/TeamManateeLogo.png';
-import { FiPhone, FiMail } from 'react-icons/fi';
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { FaInstagram, FaTiktok } from 'react-icons/fa6';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -14,17 +16,37 @@ const Footer = () => {
         {/* Section 1: Get In Touch */}
         <div className="w-full max-w-xs">
           <h3 className="text-xl font-semibold mb-2 relative inline-block footer-title">Get In Touch</h3>
-                    <div className="footercontact-detail">
-                      <FiPhone/>
-                      <span>0121doone</span>
+                    <div className="footercontact-detail contact-text flex items-center gap-2">
+                      <FaPhoneAlt className="text-pink-500"/>
+                      <span>07799634410</span>
                     </div>
-                    <div className="footercontact-detail">
-                      <FiMail/>
-                      <span>maintenanceman@gmail.com</span>
+                    <div className="footercontact-detail contact-text flex items-center gap-2">
+                      <MdMail className="text-pink-500"/>
+                      <span>emelie.hallett@yahoo.com</span>
                     </div>
+                     <div className="flex gap-4">
+                          <a
+                            href="https://www.instagram.com/emeliehallett/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram"
+                            className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+                          >
+                            <FaInstagram size={24} />
+                          </a>
+                          <a
+                            href="https://www.tiktok.com/@emeliehallettmusic"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="TikTok"
+                            className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+                          >
+                            <FaTiktok size={24} />
+                          </a>
+                        </div>
           <button
             onClick={() => navigate('/contact')}
-            className="mt-4 text-orange-500 underline hover:text-orange-700 transition-colors text-sm"
+            className="mt-3 text-[#FF69B4] underline hover:text-pink-600 transition-colors text-sm"
           >
             Contact Us
           </button>
@@ -36,7 +58,8 @@ const Footer = () => {
           <ul className="mt-4 space-y-1 text-sm">
             <li>Hampshire</li>
             <li>London</li>
-            <li>Durham</li>
+            <li>Surrey</li>
+            <li>Sussex</li>
           </ul>
         </div>
 
@@ -44,7 +67,7 @@ const Footer = () => {
         <div className="w-full max-w-xs flex flex-col items-center md:items-start">
           <img src={logo} alt="Logo" className="w-24 h-auto mb-2" />
           <p className="text-sm text-center md:text-left mt-2">
-            © 2025 | Kings Building and Maintenance<br />
+            © 2025 | Emelie Hallett Music<br />
             All Rights Reserved
           </p>
         </div>

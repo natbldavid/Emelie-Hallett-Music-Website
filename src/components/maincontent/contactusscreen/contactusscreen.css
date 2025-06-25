@@ -4,8 +4,9 @@
     flex-wrap: wrap;
     gap: 40px;
     padding: 40px;
+    padding-top: 150px; /* 👈 Add this line */
     background-color: #f9f9f9;
-    justify-content: center; /* Center the content */
+    justify-content: center;
 }
 
 .contact-info {
