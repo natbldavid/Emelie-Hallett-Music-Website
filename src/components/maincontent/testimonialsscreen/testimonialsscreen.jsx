@@ -36,9 +36,11 @@ const TestimonialsScreen = () => {
   };
 
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const [justSubmitted, setJustSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setJustSubmitted(true);
 
     if (!executeRecaptcha) {
       alert('Recaptcha not ready');
@@ -57,7 +59,6 @@ const TestimonialsScreen = () => {
       const result = await res.json();
 
       if (res.ok) {
-        alert('Thank you for your review!');
         setFormData({ name: '', location: '', review: '', rating: 5 });
       } else {
         alert(result.error || 'Submission failed.');
@@ -184,6 +185,11 @@ const TestimonialsScreen = () => {
               >
                 Submit Review
               </button>
+                        {justSubmitted && (
++             <p className="mt-2 text-green-600">
+                Thank you for your submission. It is now being processed.
+              </p>
+            )}
             </form>
           </div>
         </div>

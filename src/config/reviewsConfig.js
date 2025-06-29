@@ -4,6 +4,11 @@ const reviews = [
     author: "Henri & Rebecca, Oxford",
     rating: 5,
   },
+  {
+    text: "Emelie was absolutely amazing at our wedding! Her voice is stunning [...] Emelie made our day even more magical. Highly, highly recommend.",
+    author: "Kelly, Winchester",
+    rating: 5,
+  }
 ];
 
 export default reviews;

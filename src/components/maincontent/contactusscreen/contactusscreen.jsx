@@ -15,6 +15,7 @@ const ContactUsScreen = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [justSubmitted, setJustSubmitted] = useState(false);
 
   const isFormValid = () => {
     const { Name, email, message } = formData;
@@ -31,6 +32,7 @@ const ContactUsScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setJustSubmitted(true);
     if (!isFormValid()) return;
     if (!executeRecaptcha) {
       alert('Recaptcha not ready');
@@ -51,7 +53,6 @@ const ContactUsScreen = () => {
       });
 
       if (response.ok) {
-        alert('Thank you! Your message has been sent.');
         setFormData({ Name: '', email: '', phone: '', message: '' });
       } else {
         alert('Something went wrong. Please try again.');
@@ -157,6 +158,10 @@ const ContactUsScreen = () => {
         >
           {isSubmitting ? 'Sending...' : 'Submit'}
         </button>
+                {justSubmitted && (
+          <p className="mt-2 text-green-600">
+            Thank you for your submission. It is now being processed.
+          </p> )}
       </form>
     </div>
   );
