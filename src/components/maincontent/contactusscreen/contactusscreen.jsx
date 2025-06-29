@@ -42,7 +42,7 @@ const ContactUsScreen = () => {
     try {
       const token = await executeRecaptcha('contact_form'); // label can be anything
 
-      const response = await fetch('https://emelie-hallett-music-backend.onrender.com/contact', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
