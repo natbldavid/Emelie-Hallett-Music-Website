@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import emeliehomescreenphoto from '../../../assets/emeliehomescreenphotoofficial.webp';
 import niceemeliesitting from '../../../assets/niceemeliechair.jpg';
 import { FaInstagram, FaTiktok } from 'react-icons/fa6';
+import songCategories from '../../../config/songListConfig'; // <- Import config
 
 const SongListScreen = () => {
-  const [openSections, setOpenSections] = useState({
-    weddings: false,
-    social: false,
-  });
+  const [openSections, setOpenSections] = useState({});
 
   const toggleSection = (key) => {
     setOpenSections((prev) => ({
@@ -17,9 +15,9 @@ const SongListScreen = () => {
   };
 
   return (
-    <div className="services-screen">
+    <div className="services-screen bg-[#FFF8F9]">
 
-      {/* Section 1 (unchanged) */}
+      {/* Section 1 */}
       <div className="relative w-full h-[60vh] text-center text-white overflow-hidden">
         <img
           src={emeliehomescreenphoto}
@@ -35,7 +33,6 @@ const SongListScreen = () => {
           </h1>
           <p className="text-2xl font-elegant mb-4">Professional singer for your special days</p>
 
-          {/* Social Icons */}
           <div className="flex gap-6">
             <a
               href="https://www.instagram.com/emeliehallett/"
@@ -59,8 +56,8 @@ const SongListScreen = () => {
         </div>
       </div>
 
-      {/* Section 2: Song List */}
-      <div className="bg-white py-20 px-8 md:px-20">
+      {/* Section 2 */}
+      <div className="py-20 px-8 md:px-20">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold mb-4">Here's a list of the songs I can sing for your events.</h2>
           <p className="text-lg text-gray-600">
@@ -69,32 +66,9 @@ const SongListScreen = () => {
         </div>
 
         <div className="flex flex-col md:flex-row gap-12">
-          {/* Accordion */}
+          {/* Accordion List */}
           <div className="md:w-1/2 w-full space-y-4">
-            {[
-              {
-                key: 'weddings',
-                title: 'Weddings',
-                songs: [
-                  "Can't Help Falling in Love – Elvis Presley",
-                  "A Thousand Years – Christina Perri",
-                  "Make You Feel My Love – Adele",
-                  "All of Me – John Legend",
-                  "Perfect – Ed Sheeran"
-                ],
-              },
-              {
-                key: 'social',
-                title: 'Social Events',
-                songs: [
-                  "Valerie – Amy Winehouse",
-                  "Rolling in the Deep – Adele",
-                  "Shallow – Lady Gaga & Bradley Cooper",
-                  "Dancing Queen – ABBA",
-                  "Mr. Brightside – The Killers"
-                ],
-              },
-            ].map(({ key, title, songs }) => (
+            {songCategories.map(({ key, title, songs }) => (
               <div key={key} className="border rounded-lg shadow-sm overflow-hidden">
                 <button
                   onClick={() => toggleSection(key)}
@@ -103,13 +77,13 @@ const SongListScreen = () => {
                   {title}
                 </button>
                 <div
-                  className={`px-6 overflow-hidden transition-all duration-300 ${
+                  className={`px-6 overflow-scroll transition-all duration-300 ${
                     openSections[key]
                       ? 'max-h-[500px] py-4 opacity-100'
                       : 'max-h-0 py-0 opacity-0'
                   }`}
                 >
-                  <ul className="text-lg space-y-2">
+                  <ul className="text-md space-y-2">
                     {songs.map((song, i) => (
                       <li key={i}>{song}</li>
                     ))}
@@ -129,7 +103,7 @@ const SongListScreen = () => {
           </div>
         </div>
       </div>
-            {/* Section Separator */}
+
       <hr className="border-t-2 border-black shadow-lg" />
     </div>
   );

@@ -13,11 +13,11 @@ import './layout.css';
 
 const Layout = () => {
   return (
-   <Router basename="/Emelie-Hallett-Music-Website">
+   <Router>
   <ScrollToTop />
   <div className="flex flex-col min-h-screen">
     <Navbar />
-    <main className="flex-grow">
+    <main className="flex-grow main-content">
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/about" element={<AboutUsScreen />} />

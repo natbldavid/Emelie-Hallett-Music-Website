@@ -1,25 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
+import reviews from '../../config/reviewsConfig'; // adjust path as needed
 
 const Ratings = () => {
-  const reviews = [
-    {
-      text: "Emelie sang our first dance song at our wedding and made a special moment even more beautiful with her gorgeous singing. We were so pleased and would recommend her to anyone.",
-      author: "Henri & Rebecca, Oxford",
-      rating: 5,
-    },
-    {
-      text: "Highly recommend Emelie, a beautiful voice and a joy to have at our event.",
-      author: "Lisa, Guildford",
-      rating: 5,
-    },
-    {
-      text: "Professional and reliable. A pleasure to work with.",
-      author: "John, Reading",
-      rating: 5,
-    },
-  ];
-
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [direction, setDirection] = useState('next');
   const intervalRef = useRef(null);
@@ -36,7 +19,6 @@ const Ratings = () => {
     );
   };
 
-  // Swipe support
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
       resetAutoSlide();
@@ -49,11 +31,10 @@ const Ratings = () => {
     trackMouse: true,
   });
 
-  // Auto slide every 3 seconds
   const startAutoSlide = () => {
     intervalRef.current = setInterval(() => {
       handleNextReview();
-    }, 3000); // Change every 3 seconds
+    }, 3000);
   };
 
   const resetAutoSlide = () => {
@@ -76,7 +57,6 @@ const Ratings = () => {
         className="review-container flex items-center justify-center relative"
         {...swipeHandlers}
       >
-        {/* Left Arrow — hidden on small screens */}
         <button
           className="review-button absolute left-0 text-4xl px-4 hidden sm:block"
           onClick={() => {
@@ -93,9 +73,9 @@ const Ratings = () => {
             direction === 'next' ? 'slide-left' : 'slide-right'
           }`}
         >
-<p className="sm:text-xl mb-4 px-4 line-clamp-5 h-[8rem] flex items-center justify-center text-center">
-  “{reviews[currentReviewIndex].text}”
-</p>
+          <p className="sm:text-xl mb-4 px-4 line-clamp-5 h-[10rem] flex items-center justify-center text-center">
+            “{reviews[currentReviewIndex].text}”
+          </p>
           <div className="text-yellow-500 mb-4 text-lg sm:text-2xl">
             {'★'.repeat(reviews[currentReviewIndex].rating)}
           </div>
@@ -104,7 +84,6 @@ const Ratings = () => {
           </p>
         </div>
 
-        {/* Right Arrow — hidden on small screens */}
         <button
           className="review-button absolute right-0 text-4xl px-4 hidden sm:block"
           onClick={() => {
@@ -116,7 +95,6 @@ const Ratings = () => {
         </button>
       </div>
 
-      {/* Dots */}
       <div className="mt-6 flex justify-center gap-2">
         {reviews.map((_, i) => (
           <div

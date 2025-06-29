@@ -1,3 +1,5 @@
+// src/components/navbar/navbar.jsx
+
 import React, { useState, useEffect } from 'react';
 import './navbar.css';
 import logo from '../../assets/OfficialEmelieHallettLogo.png';
@@ -29,9 +31,18 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
+
+      if (isScrolled) {
+        document.body.classList.add('navbar-overlay-mode');
+      } else {
+        document.body.classList.remove('navbar-overlay-mode');
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // run on load
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -54,7 +65,7 @@ const Navbar = () => {
           />
         </NavLink>
 
-        <ul className={`navbar-links`}>
+        <ul className="navbar-links">
           {navItems.map((item) => (
             <li key={item.path} className="navbar-item">
               <NavLink
@@ -77,26 +88,26 @@ const Navbar = () => {
           <p className="contact-text flex items-center gap-2">
             <MdMail className="text-pink-500" /> emelie.hallett@yahoo.com
           </p>
-                                       <div className="flex gap-4">
-                                  <a
-                                    href="https://www.instagram.com/emeliehallett/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Instagram"
-                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
-                                  >
-                                    <FaInstagram size={24} />
-                                  </a>
-                                  <a
-                                    href="https://www.tiktok.com/@emeliehallettmusic"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="TikTok"
-                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
-                                  >
-                                    <FaTiktok size={24} />
-                                  </a>
-                                </div>
+          <div className="flex gap-4">
+            <a
+              href="https://www.instagram.com/emeliehallett/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+            >
+              <FaInstagram size={24} />
+            </a>
+            <a
+              href="https://www.tiktok.com/@emeliehallettmusic"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+            >
+              <FaTiktok size={24} />
+            </a>
+          </div>
         </div>
 
         <button
@@ -117,7 +128,7 @@ const Navbar = () => {
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                     isActive ? 'overlay-link overlay-link-active' : 'overlay-link'
+                      isActive ? 'overlay-link overlay-link-active' : 'overlay-link'
                     }
                     end={item.path === '/'}
                   >
@@ -132,26 +143,26 @@ const Navbar = () => {
             >
               Close ✕
             </button>
-                                         <div className="flex gap-4">
-                                  <a
-                                    href="https://www.instagram.com/emeliehallett/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Instagram"
-                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
-                                  >
-                                    <FaInstagram size={24} />
-                                  </a>
-                                  <a
-                                    href="https://www.tiktok.com/@emeliehallettmusic"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="TikTok"
-                                    className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
-                                  >
-                                    <FaTiktok size={24} />
-                                  </a>
-                                </div>
+            <div className="flex gap-4">
+              <a
+                href="https://www.instagram.com/emeliehallett/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+              >
+                <FaInstagram size={24} />
+              </a>
+              <a
+                href="https://www.tiktok.com/@emeliehallettmusic"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                className="mt-3 text-pink-500 hover:text-pink-300 transition-colors"
+              >
+                <FaTiktok size={24} />
+              </a>
+            </div>
           </div>
         </div>
       )}

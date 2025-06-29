@@ -9,7 +9,7 @@ const AboutUsScreen = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="home-screen">
+    <div className="home-screen bg-[#FFF8F9]">
 {/* Section 1 */}
 <div className="relative w-full h-[60vh] text-center text-white overflow-hidden">
   <img
@@ -51,7 +51,7 @@ const AboutUsScreen = () => {
 </div>
 
       {/* Combined About Section */}
-      <div className="bg-white py-20 px-8 md:px-20">
+      <div className="py-20 px-8 md:px-20">
         <div className="flex flex-col md:flex-row items-center gap-12">
           {/* Text Column */}
           <div className="md:w-1/2 w-full">

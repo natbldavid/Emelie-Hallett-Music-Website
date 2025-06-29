@@ -5,7 +5,6 @@ import emelieweddingphoto from '../../../assets/weddingphoto.jpg';
 import emeliepubphoto from '../../../assets/pubphoto.jpg';
 import emeliecorporatephoto from '../../../assets/corporateeventsphoto.jpg';
 import lovelyemeliesinging from '../../../assets/LovelyEmelieSinging.jpg';
-import { GiMicrophone } from "react-icons/gi";
 import { FaInstagram, FaTiktok } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,7 +26,6 @@ const HomeScreen = () => {
   <div className="relative z-10 flex flex-col items-center justify-center h-full">
     <h1 className="text-5xl font-romantic mb-4 flex items-center justify-center gap-2">
       Emelie Hallett Music
-      <span><GiMicrophone size={40} /></span>
     </h1>
     <p className="text-2xl font-elegant mb-4">Professional singer for your special days</p>
 
@@ -139,12 +137,12 @@ const HomeScreen = () => {
       <p className="text-lg">Years of Experience</p>
     </div>
     <div>
-      <h3 className="text-4xl font-extrabold mb-2">25+</h3>
-      <p className="text-lg">Weddings & Events</p>
+      <h3 className="text-4xl font-extrabold mb-2">100+</h3>
+      <p className="text-lg">Songs in Repertoire</p>
     </div>
     <div>
       <h3 className="text-4xl font-extrabold mb-2">250+</h3>
-      <p className="text-lg">Satisfied Clients</p>
+      <p className="text-lg">Satisfied Guests</p>
     </div>
   </div>
 </div>
